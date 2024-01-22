@@ -1,6 +1,6 @@
 <div>
     <div class="font-sans text-gray-900 antialiased">
-        <div class="min-h-[600px] max-w-2xl flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900 my-[100px] mx-auto bg-opacity-50 dark:bg-opacity-70">
+        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900 bg-opacity-50 dark:bg-opacity-70 backdrop-blur-sm">
             <div>
                 <a href="/">
                     <x-application-logo class="w-20 h-20 fill-current text-gray-500" />

@@ -116,7 +116,7 @@
             </div>
         </div>
     </div>
-    <div id="login1" class="hidden fixed top-0 right-0 min-w-full min-h-screen">
+    <div id="login1" class="transition-opacity duration-700 ease-in-out hidden fixed top-0 right-0 min-w-full min-h-screen">
         <x-guest-layout>
             <!-- Session Status -->
             <x-auth-session-status class="mb-4" :status="session('status')" />
@@ -163,15 +163,15 @@
                     <x-primary-button class="ms-3">
                         {{ __('Log in') }}
                     </x-primary-button>
-                    <a href="/" class="ms-3 inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
-                        Cancel
-                    </a>
+                    <div id="closebtn" class="cursor-pointer ms-3 inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
+                        Back
+                    </div>
                 </div>
             </form>
         </x-guest-layout>
     </div>
 
-    <div id="register1" class="hidden fixed top-0 right-0 min-w-full min-h-screen">
+    <div id="register1" class="transition-opacity duration-700 ease-in-out hidden fixed top-0 right-0 min-w-full min-h-screen">
         <x-guest-layout>
             <form method="POST" action="{{ route('register') }}">
                 @csrf
@@ -221,9 +221,9 @@
                     <x-primary-button class="ms-4">
                         {{ __('Register') }}
                     </x-primary-button>
-                    <a href="/" class="ms-3 inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
-                        Cancel
-                    </a>
+                    <div id="closebtn1" class="cursor-pointer ms-3 inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
+                        Back
+                    </div>
                 </div>
             </form>
         </x-guest-layout>
@@ -236,15 +236,41 @@
             var registerLink = document.getElementById('registerlink');
             var loginElement = document.getElementById('login1');
             var registerElement = document.getElementById('register1');
-
+            var closeBtn = document.getElementById('closebtn');
+            var closeBtn1 = document.getElementById('closebtn1');
+    
+            // Function to show element with fade-in effect
+            function showElement(element) {
+                element.style.display = 'block';
+                setTimeout(function() {
+                    element.classList.remove('opacity-0');
+                }, 10); // Delay to ensure the display property is set before transitioning
+            }
+    
+            // Function to hide element with fade-out effect
+            function hideElement(element) {
+                element.classList.add('opacity-0');
+                setTimeout(function() {
+                    element.style.display = 'none';
+                }, 300); // Adjust the time to match the transition duration
+            }
+    
             loginLink.addEventListener('click', function() {
-                loginElement.style.display = 'block';
-                registerElement.style.display = 'none';
+                showElement(loginElement);
+                hideElement(registerElement); // Hide register element when login is clicked
             });
-
+    
             registerLink.addEventListener('click', function() {
-                registerElement.style.display = 'block';
-                loginElement.style.display = 'none';
+                showElement(registerElement);
+                hideElement(loginElement); // Hide login element when register is clicked
+            });
+    
+            closeBtn.addEventListener('click', function() {
+                hideElement(loginElement);
+            });
+    
+            closeBtn1.addEventListener('click', function() {
+                hideElement(registerElement);
             });
         });
     </script>
