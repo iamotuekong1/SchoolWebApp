@@ -57,10 +57,41 @@ Route::group(['prefix' => 'pages'], function () {
         Route::get('users/{id}/show', 'Admin\UserController@show');
         // Add other admin routes here
 
+        // School routes
+        Route::get('school', 'Admin\SchoolController@index');
+        Route::get('school/create', 'Admin\SchoolController@create');
+        Route::get('school/switch', 'Admin\SchoolController@switch');
+
         // Session routes
-        Route::get('session', 'Admin\SessionController@index');
-        Route::get('session/create', 'Admin\SessionController@create');
-        Route::get('session/switch', 'Admin\SessionController@switch');
+        Route::get('school/session', 'Admin\SessionController@index');
+        Route::get('school/session/create', 'Admin\SessionController@create');
+        Route::get('school/session/switch', 'Admin\SessionController@switch');
+
+        //class routes
+        Route::get('school/session/class', 'Admin\ClassController@index');
+        Route::get('school/session/class/create', 'Admin\ClassController@create');
+        Route::get('school/session/class/edit', 'Admin\ClassController@edit');
+        
+        //subject routes
+        Route::get('school/session/subject', 'Admin\SubjectController@index');
+        Route::get('school/session/subject/create', 'Admin\ClassController@create');
+        Route::get('school/session/subject/edit', 'Admin\ClassController@edit');
+
+        //exam routes
+        Route::get('school/session/exam', 'Admin\ExamController@index');
+        Route::get('school/session/exam/create', 'Admin\ExamController@create');
+        Route::get('school/session/exam/edit', 'Admin\ExamController@edit');
+        
+        //result routes
+        Route::get('school/session/result', 'Admin\ResultController@index');
+        Route::get('school/session/result/create', 'Admin\ResultController@create');
+        Route::get('school/session/result/edit', 'Admin\ResultController@edit');
+        
+        //notice routes
+        Route::get('school/session/notice', 'Admin\NoticeController@index');
+        Route::get('school/session/notice/create', 'Admin\NoticeController@create');
+        Route::get('school/session/notice/edit', 'Admin\NoticeController@edit');
+
     });
 
     // Student routes
